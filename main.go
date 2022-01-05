@@ -24,6 +24,12 @@ import (
 	"github.com/multiformats/go-multiaddr"
 )
 
+// These variables are set in build step
+var (
+	Version  = "unset"
+	Revision = "unset"
+)
+
 func handleStream(serverAddr string,s network.Stream) {
 	log.Println("Got a new stream!")
  
