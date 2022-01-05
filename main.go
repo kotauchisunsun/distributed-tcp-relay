@@ -209,6 +209,7 @@ func makeHost(ctx context.Context,port int, randomness io.Reader) (host.Host, er
 		}),
 		libp2p.EnableNATService(),
 		libp2p.EnableAutoRelay(),
+		libp2p.EnableHolePunching(),
 		libp2p.Identity(prvKey),
 	)
 }
