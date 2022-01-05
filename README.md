@@ -16,28 +16,28 @@ distributed-tcp-relayはlibp2pを用いることで、手動でのポート開�
 ### コマンドラインオプション
 
 ```
--sa Server Address      # relayがClient Modeとして起動するとき、コネクションを転送する先のサーバーアドレス
--ca Client Address      # relayがServer Modeとして起動するとき、コネクションを受け付けるサーバーアドレス
+-sa Server Address      # relayがClient Modeとして起動するとき、コネクションを受け付けるサーバーアドレス
+-ca Client Address      # relayがServer Modeとして起動するとき、コネクションを転送する先のサーバーアドレス
 -r  Rendezvous String   # サーバーの通信を行う際に使用する共通の文字列
 -s  Server Mode         # Server Modeで起動する
 ```
 
-### Client Modeでの起動例
+### Server Modeでの起動例
 
-Serverを提供する側は、適当な合言葉(Randezvous)を決めてClient Modeとして起動してください。
+Serverを提供する側は、適当な合言葉(Randezvous)を決めてServer Modeとして起動してください。
 
 ```
 # 自分のPCのlocalhost:7070で起動しているサーバーをリレーしている。
-relay -sa localhost:7070 -r Randezvous
+relay -s -ca localhost:7070 -r Randezvous
 ```
 
-### Server Modeでの起動例
+### Client Modeでの起動例
 
-Client側は、先ほど決めた合言葉を設定し、Server Modeとして起動してください。
+Client側は、先ほど決めた合言葉を設定し、Client Modeとして起動してください。
 
 ```
 # 自分のPCのlocalhost:8080にサーバーが転送されています。
 # クライアント側のソフトは、localhost:8080に接続するように設定してください。
-relay -s -ca localhost:8080 -r Randezvous
+relay -sa localhost:8080 -r Randezvous
 ```
 
