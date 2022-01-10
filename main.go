@@ -151,7 +151,6 @@ func initPeerByDHT(ctx context.Context, h host.Host, rendezvousString string) er
 	return nil
 }
 
-
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -204,7 +203,7 @@ func makeHost(ctx context.Context,port int, randomness io.Reader) (host.Host, er
 		libp2p.NATPortMap(),
 		libp2p.ListenAddrs(sourceMultiAddr),
 		libp2p.Routing(func(h host.Host) (routing.PeerRouting, error) {
-			idht, err := connectToBootstrapPeers(ctx,h)
+			idht, err := dht.New(ctx, h)
 			return idht, err
 		}),
 		libp2p.EnableNATService(),
